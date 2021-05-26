@@ -1408,6 +1408,15 @@ class SymmetricDeleteModel(AnnotatorModel):
         from sparknlp.pretrained import ResourceDownloader
         return ResourceDownloader.downloadModel(SymmetricDeleteModel, name, lang, remote_loc)
 
+class NegationDetectorModel(AnnotatorModel):
+    name = "NegationDetectorModel"
+
+    @keyword_only
+    def __init__(self, classname="com.avedian.nlp.annotators.NegationDetectorModel", java_model=None):
+        super(NegationDetectorModel, self).__init__(
+            classname=classname,
+            java_model=java_model
+        )
 
 class NerApproach(Params):
     labelColumn = Param(Params._dummy(),
