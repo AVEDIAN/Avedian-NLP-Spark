@@ -1411,13 +1411,25 @@ class SymmetricDeleteModel(AnnotatorModel):
 class NegationDetectorModel(AnnotatorModel):
     name = "NegationDetectorModel"
 
-    @keyword_only
+    policy = Param(Params._dummy(),
+                   "policy",
+                   "policy to remove pattern from text",
+                   typeConverter=TypeConverters.toString)
+
+        
     def __init__(self, classname="com.avedian.nlp.annotators.NegationDetectorModel", java_model=None):
         super(NegationDetectorModel, self).__init__(
             classname=classname,
             java_model=java_model
         )
 
+    def setPolicy(self, value):
+        return self._set(policy=value)
+
+    def getPolicy(self):
+        result = self._call_java('getPolicy')
+        return result   
+        
 class NerApproach(Params):
     labelColumn = Param(Params._dummy(),
                         "labelColumn",
